@@ -18,6 +18,8 @@ import {
   TrendingDown
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import ParticlesCanvas from './components/ParticlesCanvas';
+import OutcomeChart from './components/OutcomeChart';
 
 const ANTI_CHARITIES = [
   { id: 'rival-pac', name: 'Rival Political Action Committee (PAC)', desc: 'Funds political candidates you vigorously oppose. Maximum psychological pain.' },
@@ -153,33 +155,35 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(239,68,68,0.08),transparent_50%)] pointer-events-none" />
-        <div className="max-w-5xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-xs text-rose-300">
-            <ShieldAlert className="w-4 h-4 text-rose-400" />
+      <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <ParticlesCanvas color="244, 63, 94" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(244,63,94,0.12),transparent_60%)] pointer-events-none" />
+        
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-rose-500/30 text-xs text-rose-300 font-mono shadow-lg shadow-rose-950/40">
+            <ShieldAlert className="w-4 h-4 text-rose-400 animate-pulse" />
             <span>Kahneman & Tversky Behavioral Loss Aversion • Hard Kernel-Level DNS Block</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Financial Escrow Screen Time Blocker with Loss-Aversion Stakes
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+            Financial Escrow Screen Time Blocker with <span className="bg-gradient-to-r from-rose-400 via-red-300 to-amber-300 bg-clip-text text-transparent">Loss-Aversion Stakes</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
             Screen time limits fail because clicking "Ignore for 15 Minutes" costs nothing. StakeGuard backs your focus commitments with cold hard cash. Unlocking YouTube or Twitter before 5 PM automatically charges $25 to your designated anti-charity.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <a 
               href="#simulator" 
-              className="px-6 py-3.5 bg-rose-500 hover:bg-rose-400 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-rose-500/25 flex items-center gap-2"
+              className="px-6 py-3.5 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white font-bold text-sm rounded-xl transition-all shadow-xl shadow-rose-500/30 flex items-center gap-2 hover:scale-[1.02]"
             >
               <span>Test Emergency Forfeit Screen</span>
               <ArrowRight className="w-4 h-4" />
             </a>
             <a 
               href="#configurator" 
-              className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm rounded-xl transition-all flex items-center gap-2"
+              className="px-6 py-3.5 bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-rose-500/30 font-semibold text-sm rounded-xl transition-all flex items-center gap-2 hover:border-rose-400/60"
             >
               <Lock className="w-4 h-4 text-rose-400" />
               <span>Configure Stake Parameters</span>
@@ -188,24 +192,29 @@ export default function App() {
 
           {/* Market TAM & Loss-Aversion Metrics */}
           <div className="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+            <div className="bg-slate-900/80 border border-rose-500/20 rounded-xl p-4 backdrop-blur-md">
               <div className="text-2xl font-black text-rose-400">$1.44B</div>
               <div className="text-xs text-slate-400 font-medium">Knowledge Worker TAM</div>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+            <div className="bg-slate-900/80 border border-white/10 rounded-xl p-4 backdrop-blur-md">
               <div className="text-2xl font-black text-white">4.2x</div>
               <div className="text-xs text-slate-400 font-medium">Loss Aversion Habit Multiplier</div>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+            <div className="bg-slate-900/80 border border-emerald-500/20 rounded-xl p-4 backdrop-blur-md">
               <div className="text-2xl font-black text-emerald-400">96.8%</div>
               <div className="text-xs text-slate-400 font-medium">Focus Session Completion Rate</div>
             </div>
-            <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+            <div className="bg-slate-900/80 border border-white/10 rounded-xl p-4 backdrop-blur-md">
               <div className="text-2xl font-black text-white">$25.00</div>
               <div className="text-xs text-slate-400 font-medium">Optimal Stake Threshold</div>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Julien Bek $1:$6 Sequoia Framework + Bklit UI Outcome Engine */}
+      <section className="px-4 sm:px-6 lg:px-8">
+        <OutcomeChart onCtaClick={() => setIsCabModalOpen(true)} />
       </section>
 
       {/* Feature 1: Stake Configuration Engine */}
